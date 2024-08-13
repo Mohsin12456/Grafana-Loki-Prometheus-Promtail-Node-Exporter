@@ -2,13 +2,13 @@ groups:
   - name: example-alerts
     rules:
       - alert: HighCPUUsage
-        expr: avg(rate(node_cpu_seconds_total{job="node_exporter", mode="user"}[1m])) by (instance) > 0.8
+        expr: avg(rate(node_cpu_seconds_total{job="node_exporter", mode="user"}[1m])) by (instance) > 0.7
         for: 5m
         labels:
           severity: critical
         annotations:
           summary: "High CPU usage detected on {{ $labels.instance }}"
-          description: "CPU usage is above 80% for the last 5 minutes."
+          description: "CPU usage is above 70% for the last 5 minutes."
 
       - alert: HighMemoryUsage
         expr: (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes) < 0.1
